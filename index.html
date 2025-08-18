@@ -1,46 +1,190 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Santa Dália RPG</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; color: #222; margin: 0; padding: 0; }
-    .container { max-width: 600px; margin: 60px auto; background: #fff; padding: 40px; border-radius: 10px; box-shadow: 0 2px 8px #0001;}
-    h1 { color: #5d2466; }
-    nav { margin: 30px 0; }
-    nav a {
-      text-decoration: none;
-      color: #5d2466;
-      background: #eee;
-      padding: 10px 18px;
-      border-radius: 5px;
-      margin-right: 10px;
-      transition: background 0.2s;
-    }
-    nav a:hover {
-      background: #d6b4e7;
-      color: #222;
-    }
-    .credit { font-size: 0.9em; color: #666; margin-top: 30px;}
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visite Santa Dália - O Coração da Serra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3, h4, .logo {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <h1>Bem-vindo ao Santa Dália RPG!</h1>
-    <nav>
-      <a href="personagens.html">Personagens</a>
-      <a href="aventuras.html">Aventuras</a>
-      <a href="regras.html">Regras</a>
-      <a href="fichas.html">Fichas</a>
-      <a href="extras.html">Extras</a>
+<body class="bg-gray-50">
+
+    <nav class="p-5 bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="logo text-2xl font-bold text-gray-800">Santa Dália</a>
+            <ul class="hidden lg:flex items-center space-x-8 text-gray-600 font-medium">
+                <li><a href="#home" class="hover:text-green-800">INÍCIO</a></li>
+                <li><a href="#pontos-turisticos" class="hover:text-green-800">PONTOS TURÍSTICOS</a></li>
+                <li><a href="#historia" class="hover:text-green-800">NOSSA HISTÓRIA</a></li>
+                <li><a href="#sobre" class="hover:text-green-800">SOBRE</a></li>
+                <li><a href="#contato" class="hover:text-green-800">CONTATO</a></li>
+            </ul>
+            <a href="#contato" class="hidden lg:inline-block bg-green-700 text-white font-bold py-2 px-6 rounded-md hover:bg-green-800 transition-colors">Planeje a Visita</a>
+            <button id="menu-btn" class="lg:hidden text-2xl">
+                <i class="ri-menu-line"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <ul id="nav-links" class="hidden lg:hidden bg-white mt-4 space-y-2 p-4">
+            <li><a href="#home" class="block hover:text-green-800">INÍCIO</a></li>
+            <li><a href="#pontos-turisticos" class="block hover:text-green-800">PONTOS TURÍSTICOS</a></li>
+            <li><a href="#historia" class="block hover:text-green-800">NOSSA HISTÓRIA</a></li>
+            <li><a href="#sobre" class="block hover:text-green-800">SOBRE</a></li>
+            <li><a href="#contato" class="block hover:text-green-800">CONTATO</a></li>
+        </ul>
     </nav>
-    <p>Este é o site oficial do RPG temático de Santa Dália, mestrado por Joao Teixeira em 2025.</p>
-    <p>Em breve teremos mais novidades, aventuras e conteúdo para o seu jogo!</p>
-    <div class="credit">
-      <p>Repositório criado por <strong>Joao Teixeira</strong>.<br>
-      &copy; 2025 Santa Dália RPG</p>
-    </div>
-  </div>
+
+    <header id="home" class="bg-gray-100">
+        <div class="container mx-auto px-5 py-10 lg:py-20 grid lg:grid-cols-2 items-center gap-10">
+            <div class="header__content text-center lg:text-left">
+                <p class="font-semibold text-green-700 mb-2">UM REFÚGIO NA SERRA</p>
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Onde a Tradição Encontra a Natureza!</h1>
+                <p class="text-gray-600 my-6">Descubra um lugar onde cada rua conta uma história e cada paisagem inspira tranquilidade. Santa Dália espera por você.</p>
+                <button class="bg-green-700 text-white font-bold py-3 px-8 rounded-md hover:bg-green-800 transition-colors">Explore Agora</button>
+            </div>
+            <div class="header__image">
+                <img src="https://placehold.co/600x400/334237/FFFFFF?text=Serra+de+Santa+D%C3%A1lia" alt="header" class="rounded-lg shadow-2xl mx-auto" />
+            </div>
+        </div>
+    </header>
+
+    <section class="container mx-auto px-5 py-20" id="pontos-turisticos">
+        <h2 class="text-4xl font-bold text-center text-gray-800">Pontos Turísticos Populares</h2>
+        <p class="text-center text-gray-600 mt-2 mb-10">Descubra os locais mais amados de nossa cidade histórica.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="destination__card bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://placehold.co/600x400/5A5A5A/FFFFFF?text=R%C3%A1dio+Aurora" alt="destination" class="w-full h-64 object-cover" />
+                <div class="p-5">
+                    <h4 class="text-xl font-bold text-gray-800">Rádio Aurora</h4>
+                    <p class="text-gray-600">O coração pulsante da cidade.</p>
+                </div>
+            </div>
+            <div class="destination__card bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://placehold.co/600x400/8A7967/FFFFFF?text=Mans%C3%A3o+Hist%C3%B3rica" alt="destination" class="w-full h-64 object-cover" />
+                <div class="p-5">
+                    <h4 class="text-xl font-bold text-gray-800">Mansões da Colina</h4>
+                    <p class="text-gray-600">Um vislumbre da era de ouro.</p>
+                </div>
+            </div>
+            <div class="destination__card bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://placehold.co/600x400/6B8A67/FFFFFF?text=Pra%C3%A7a+Central" alt="destination" class="w-full h-64 object-cover" />
+                <div class="p-5">
+                    <h4 class="text-xl font-bold text-gray-800">Praça Central</h4>
+                    <p class="text-gray-600">O ponto de encontro de gerações.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mx-auto px-5 py-20" id="historia">
+        <h2 class="text-4xl font-bold text-center text-gray-800">Nossa História, Seu Legado</h2>
+        <p class="text-center text-gray-600 mt-2 mb-10">Conheça os pilares que construíram Santa Dália.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="journey__card bg-white p-6 rounded-lg shadow-md text-center">
+                <span class="text-4xl text-green-700"><i class="ri-government-line"></i></span>
+                <h4 class="text-2xl font-bold my-4 text-gray-800">A Visão dos Farias</h4>
+                <p class="text-gray-600">Idealizadores do progresso, a família Farias planejou a infraestrutura que fez de Santa Dália um centro de cultura e sofisticação na serra.</p>
+            </div>
+            <div class="journey__card bg-white p-6 rounded-lg shadow-md text-center">
+                <span class="text-4xl text-green-700"><i class="ri-heart-pulse-line"></i></span>
+                <h4 class="text-2xl font-bold my-4 text-gray-800">A Alma dos Souza</h4>
+                <p class="text-gray-600">Patronos das artes e da beleza, a família Souza investiu na identidade cultural da cidade, financiando marcos como a Praça Central e a Igreja Antiga.</p>
+            </div>
+            <div class="journey__card bg-white p-6 rounded-lg shadow-md text-center">
+                <span class="text-4xl text-green-700"><i class="ri-radio-2-line"></i></span>
+                <h4 class="text-2xl font-bold my-4 text-gray-800">A Voz da Serra</h4>
+                <p class="text-gray-600">Fruto da união das famílias fundadoras, a Rádio Aurora se tornou o símbolo máximo da cidade, unindo tradição, inovação e comunidade desde 1948.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mx-auto px-5 py-20" id="sobre">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="showcase__image">
+                <img src="https://placehold.co/600x500/C2B2A0/FFFFFF?text=Cultura+Local" alt="showcase" class="rounded-lg shadow-2xl w-full" />
+            </div>
+            <div class="showcase__content">
+                <h4 class="text-3xl font-bold text-gray-800 mb-4">Acenda sua Curiosidade a Cada Visita</h4>
+                <p class="text-gray-600 mb-4">Santa Dália oferece uma experiência única, onde a tranquilidade da natureza se encontra com a riqueza de uma história bem preservada. Com sua arquitetura charmosa, gastronomia local e a hospitalidade de seus moradores, você pode relaxar e se reconectar, seja passeando pela Praça Central ou explorando as trilhas nas colinas.</p>
+                <p class="text-gray-600">Explore o charme de Santa Dália ao seu próprio ritmo. Das mansões históricas aos eventos culturais, nossa cidade oferece o cenário perfeito para criar memórias inesquecíveis. Sente-se, relaxe e aproveite a jornada.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-green-700 text-white">
+        <div class="container mx-auto px-5 py-12 grid grid-cols-1 md:grid-cols-3 text-center gap-8">
+            <div class="banner__card">
+                <h4 class="text-4xl font-bold">170+</h4>
+                <p>Anos de História</p>
+            </div>
+            <div class="banner__card">
+                <h4 class="text-4xl font-bold">10k+</h4>
+                <p>Visitantes Anuais</p>
+            </div>
+            <div class="banner__card">
+                <h4 class="text-4xl font-bold">4.9</h4>
+                <p>Nota Média (TripAdvisor)</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato" class="bg-gray-800 text-white">
+        <div class="section__container container mx-auto px-5 py-20 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="footer__col">
+                <a href="#" class="logo text-2xl font-bold">Santa Dália</a>
+                <p class="mt-4 text-gray-400">Explore um refúgio de paz e tradição. Sua jornada por uma cidade histórica e acolhedora começa aqui.</p>
+                <ul class="flex space-x-4 mt-4">
+                    <li><a href="#" class="hover:text-green-400"><i class="ri-facebook-fill"></i></a></li>
+                    <li><a href="#" class="hover:text-green-400"><i class="ri-instagram-line"></i></a></li>
+                    <li><a href="#" class="hover:text-green-400"><i class="ri-youtube-line"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4 class="text-xl font-bold">Links Rápidos</h4>
+                <ul class="mt-4 space-y-2 text-gray-400">
+                    <li><a href="#home" class="hover:text-white">Início</a></li>
+                    <li><a href="#pontos-turisticos" class="hover:text-white">Pontos Turísticos</a></li>
+                    <li><a href="#historia" class="hover:text-white">Nossa História</a></li>
+                    <li><a href="#sobre" class="hover:text-white">Sobre</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4 class="text-xl font-bold">Contato</h4>
+                <ul class="mt-4 space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-white flex items-center"><i class="ri-phone-fill mr-2"></i>(24) 99999-0102</a></li>
+                    <li><a href="#" class="hover:text-white flex items-center"><i class="ri-record-mail-line mr-2"></i>turismo@sitedesantadalia.com.br</a></li>
+                    <li><p class="flex items-center"><i class="ri-map-pin-2-fill mr-2"></i>Praça Central, Santa Dália, RJ</p></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h4 class="text-xl font-bold">Receba Novidades</h4>
+                <form class="mt-4">
+                    <input type="text" placeholder="Seu e-mail" class="w-full p-2 rounded-md bg-gray-700 border border-gray-600 focus:outline-none focus:border-green-500" />
+                    <button class="w-full mt-2 bg-green-700 text-white font-bold py-2 rounded-md hover:bg-green-800 transition-colors">Inscrever-se</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer__bar text-center py-4 border-t border-gray-700 text-gray-500">
+            Copyright © 2025 Prefeitura de Santa Dália. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // Simple mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
