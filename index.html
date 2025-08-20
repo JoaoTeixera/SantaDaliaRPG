@@ -16,7 +16,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
+<body class="bg-gray-100 min-h-screen flex flex-col">
 
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center py-4 px-4">
@@ -29,80 +29,40 @@
         <p class="text-lg max-w-2xl mx-auto">Este é o arquivo central do RPG Santa Dália! Aqui você encontra tudo sobre as sessões, Documentos, personagens, famílias e segredos já descobertos na campanha.</p>
     </header>
 
-    <main class="container mx-auto px-4 py-12">
+    <!-- A classe flex-grow faz o main ocupar o espaço disponível, empurrando o footer para baixo -->
+    <main class="container mx-auto px-4 py-12 flex-grow">
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-4 text-green-900"><i class="ri-folder-info-line mr-2"></i>Menu Principal</h2>
             <div class="grid md:grid-cols-3 gap-6">
-                <a href="documents.html" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-yellow-500 flex flex-col items-start">
+                <a href="src/documents.html" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-yellow-500 flex flex-col items-start">
                     <span class="text-xl font-bold mb-2"><i class="ri-search-eye-line mr-2"></i>Documentos</span>
                     <span class="text-gray-700">Todos os documentos e segredos já encontrados.</span>
                 </a>
-                <a href="santaDalia.html" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-blue-600 flex flex-col items-start" target="_blank">
+                <a href="src/santaDalia.html" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-blue-600 flex flex-col items-start" target="_blank">
                     <span class="text-xl font-bold mb-2"><i class="ri-building-4-line mr-2"></i>Cidade de Santa Dália</span>
                     <span class="text-gray-700">Site completo da cidade (história, cultura, mapa, etc).</span>
                 </a>
-                <a href="#personagens" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-purple-600 flex flex-col items-start">
+                <a href="src/characters.html" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-purple-600 flex flex-col items-start">
                     <span class="text-xl font-bold mb-2"><i class="ri-group-line mr-2"></i>Personagens</span>
                     <span class="text-gray-700">Fichas dos personagens jogadores e NPCs marcantes.</span>
                 </a>
-                <a href="#radio" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-pink-600 flex flex-col items-start">
+                <a href="src/radio.html" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-pink-600 flex flex-col items-start">
                     <span class="text-xl font-bold mb-2"><i class="ri-radio-2-line mr-2"></i>Rádio Aurora</span>
                     <span class="text-gray-700">Transmissões, notícias e rumores da rádio local.</span>
                 </a>
-                <a href="sessions.html" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-green-600 flex flex-col items-start">
+                <a href="src/sessions.html" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-green-600 flex flex-col items-start">
                     <span class="text-xl font-bold mb-2"><i class="ri-calendar-todo-line mr-2"></i>Sessões</span>
                     <span class="text-gray-700">Resumos e acontecimentos das sessões já jogadas.</span>
-                <a href="posts.html" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-green-500 flex flex-col items-start">
+                </a>
+                <a href="src/posts.html" class="bg-white rounded-lg shadow p-6 hover:bg-green-50 transition border-l-4 border-green-500 flex flex-col items-start">
                     <span class="text-xl font-bold mb-2"><i class="ri-chat-3-line mr-2"></i>Posts dos Jogadores</span>
                     <span class="text-gray-700">Compartilhe e veja recados, ideias e comentários dos jogadores!</span>
                 </a>
             </div>
         </section>
-
-        <section id="sessoes" class="mb-12">
-            <h2 class="text-xl font-bold mb-4 text-green-800 flex items-center"><i class="ri-calendar-todo-line mr-2"></i>Sessões Realizadas</h2>
-            <ol class="list-decimal list-inside bg-white rounded-lg shadow p-6">
-                <li>
-                    <strong>Sessão 1:</strong> [Resumo da sessão, acontecimentos principais, decisões dos jogadores...]
-                </li>
-                <li>
-                    <strong>Sessão 2:</strong> [Resumo da sessão, Documentos reveladas, conflitos, etc...]
-                </li>
-                <!-- Adicione outras sessões conforme o jogo avança -->
-            </ol>
-        </section>
-
-        <section id="personagens" class="mb-12">
-            <h2 class="text-xl font-bold mb-4 text-purple-800 flex items-center"><i class="ri-group-line mr-2"></i>Personagens</h2>
-            <div class="bg-white rounded-lg shadow p-6 space-y-4">
-                <div>
-                    <strong>Jogador 1:</strong> [Nome, histórico, características, ficha...]
-                </div>
-                <div>
-                    <strong>Jogador 2:</strong> [Nome, histórico, características, ficha...]
-                </div>
-                <div>
-                    <strong>NPC Marcante:</strong> [Nome, papel na história, segredos, etc.]
-                </div>
-                <!-- Adicione mais personagens conforme necessário -->
-            </div>
-        </section>
-
-        <section id="radio" class="mb-12">
-            <h2 class="text-xl font-bold mb-4 text-pink-700 flex items-center"><i class="ri-radio-2-line mr-2"></i>Rádio Aurora</h2>
-            <div class="bg-white rounded-lg shadow p-6 space-y-2">
-                <div>
-                    <strong>Notícia/Boato #1:</strong> [Exemplo: "Foi ouvido um estranho barulho vindo do lago esta noite..."]
-                </div>
-                <div>
-                    <strong>Boletim #2:</strong> [Exemplo: "Festa de inverno confirmada para o próximo sábado!"]
-                </div>
-                <!-- Use para rumores, eventos e comunicações da rádio -->
-            </div>
-        </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-6 mt-10 text-center">
+    <footer class="bg-gray-800 text-white py-6 text-center">
         <span class="text-gray-300">Dossiê criado por Joao Teixeira | Santa Dália RPG &copy; 2025</span>
     </footer>
 </body>
