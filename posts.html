@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts | Santa Dália RPG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <nav class="bg-white shadow-md sticky top-0 z-50 mb-8">
+        <div class="container mx-auto flex justify-between items-center py-4 px-4">
+            <a href="index.html" class="logo text-2xl font-bold text-gray-800">Dossiê Santa Dália RPG</a>
+            <a href="index.html" class="text-green-800 font-semibold hover:text-green-600 flex items-center">
+                <i class="ri-arrow-go-back-line mr-2"></i>Voltar ao Dossiê
+            </a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-green-900 mb-8 flex items-center">
+            <i class="ri-chat-3-line mr-2"></i>Posts dos Jogadores
+        </h1>
+        <form id="postForm" class="bg-white rounded-lg shadow p-6 mb-10 flex flex-col md:flex-row gap-4 items-start">
+            <input type="text" id="author" placeholder="Seu nome" required class="border rounded px-3 py-2 w-full md:w-1/4" />
+            <input type="text" id="content" placeholder="Escreva seu post..." required class="border rounded px-3 py-2 w-full md:flex-1" />
+            <button type="submit" class="bg-green-700 text-white font-bold px-6 py-2 rounded hover:bg-green-800 transition">Postar</button>
+        </form>
+        <div class="space-y-4" id="postsList">
+            <!-- Posts aparecem aqui -->
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-10 text-center">
+        <span class="text-gray-300">Dossiê criado por Joao Teixeira | Santa Dália RPG &copy; 2025</span>
+    </footer>
+
+    <script>
+    // CONFIGURE O SEU FIREBASE ABAIXO
+    const firebaseConfig = {
+        apiKey: "AIzaSyDFZFLYTGjri4MMjdbMYDOwyXaXt09JuuI",
+        authDomain: "santadaliarpg.firebaseapp.com",
+        databaseURL: "https://santadaliarpg-default-rtdb.firebaseio.com",
+        projectId: "santadaliarpg",
+        storageBucket: "santadaliarpg.firebasestorage.app",
+        messagingSenderId: "499029720670",
+        appId: "1:499029720670:web:2d32f179243252ec503ecf",
+        measurementId: "G-TT7MV3NB0B"
+    };
+    // FIM DA CONFIGURAÇÃO FIREBASE
+
+    // Inicializa Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // Referência para posts
+    const postsRef = db.ref('posts');
+
+    // Submissão do formulário
+    document.getElementById('postForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const author = document.getElementById('author').value.trim();
+        const content = document.getElementById('content').value.trim();
+        if(author && content) {
+            const postData = {
+                author,
+                content,
+                timestamp: Date.now()
+            };
+            postsRef.push(postData);
+            document.getElementById('content').value = '';
+        }
+    });
+
+    // Exibe os posts em tempo real
+    postsRef.orderByChild('timestamp').on('value', snapshot => {
+        const postsList = document.getElementById('postsList');
+        postsList.innerHTML = '';
+        const posts = [];
+        snapshot.forEach(child => {
+            posts.push(child.val());
+        });
+        posts.reverse().forEach(post => {
+            const date = new Date(post.timestamp);
+            postsList.innerHTML += `
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="flex items-center mb-2">
+                        <span class="font-semibold text-green-800 mr-2">${post.author}</span>
+                        <span class="text-gray-400 text-xs">${date.toLocaleString('pt-BR')}</span>
+                    </div>
+                    <p class="text-gray-800">${post.content}</p>
+                </div>
+            `;
+        });
+    });
+    </script>
+</body>
+</html>
