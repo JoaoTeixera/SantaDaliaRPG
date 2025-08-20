@@ -42,63 +42,63 @@
     </footer>
 
     <script>
-    // CONFIGURE O SEU FIREBASE ABAIXO
-    const firebaseConfig = {
-        apiKey: "AIzaSyDFZFLYTGjri4MMjdbMYDOwyXaXt09JuuI",
-        authDomain: "santadaliarpg.firebaseapp.com",
-        databaseURL: "https://santadaliarpg-default-rtdb.firebaseio.com",
-        projectId: "santadaliarpg",
-        storageBucket: "santadaliarpg.firebasestorage.app",
-        messagingSenderId: "499029720670",
-        appId: "1:499029720670:web:2d32f179243252ec503ecf",
-        measurementId: "G-TT7MV3NB0B"
-    };
-    // FIM DA CONFIGURAÇÃO FIREBASE
+        // CONFIGURE O SEU FIREBASE ABAIXO
+        const firebaseConfig = {
+            apiKey: "AIzaSyDFZFLYTGjri4MMjdbMYDOwyXaXt09JuuI",
+            authDomain: "santadaliarpg.firebaseapp.com",
+            databaseURL: "https://santadaliarpg-default-rtdb.firebaseio.com",
+            projectId: "santadaliarpg",
+            storageBucket: "santadaliarpg.firebasestorage.app",
+            messagingSenderId: "499029720670",
+            appId: "1:499029720670:web:2d32f179243252ec503ecf",
+            measurementId: "G-TT7MV3NB0B"
+        };
+        // FIM DA CONFIGURAÇÃO FIREBASE
 
-    // Inicializa Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+        // Inicializa Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
 
-    // Referência para posts
-    const postsRef = db.ref('posts');
+        // Referência para posts
+        const postsRef = db.ref('posts');
 
-    // Submissão do formulário
-    document.getElementById('postForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const author = document.getElementById('author').value.trim();
-        const content = document.getElementById('content').value.trim();
-        if(author && content) {
-            const postData = {
-                author,
-                content,
-                timestamp: Date.now()
-            };
-            postsRef.push(postData);
-            document.getElementById('content').value = '';
-        }
-    });
-
-    // Exibe os posts em tempo real
-    postsRef.orderByChild('timestamp').on('value', snapshot => {
-        const postsList = document.getElementById('postsList');
-        postsList.innerHTML = '';
-        const posts = [];
-        snapshot.forEach(child => {
-            posts.push(child.val());
+        // Submissão do formulário
+        document.getElementById('postForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const author = document.getElementById('author').value.trim();
+            const content = document.getElementById('content').value.trim();
+            if(author && content) {
+                const postData = {
+                    author,
+                    content,
+                    timestamp: Date.now()
+                };
+                postsRef.push(postData);
+                document.getElementById('content').value = '';
+            }
         });
-        posts.reverse().forEach(post => {
-            const date = new Date(post.timestamp);
-            postsList.innerHTML += `
-                <div class="bg-white rounded-lg shadow p-4">
-                    <div class="flex items-center mb-2">
-                        <span class="font-semibold text-green-800 mr-2">${post.author}</span>
-                        <span class="text-gray-400 text-xs">${date.toLocaleString('pt-BR')}</span>
+
+        // Exibe os posts em tempo real
+        postsRef.orderByChild('timestamp').on('value', snapshot => {
+            const postsList = document.getElementById('postsList');
+            postsList.innerHTML = '';
+            const posts = [];
+            snapshot.forEach(child => {
+                posts.push(child.val());
+            });
+            posts.reverse().forEach(post => {
+                const date = new Date(post.timestamp);
+                postsList.innerHTML += `
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <div class="flex items-center mb-2">
+                            <span class="font-semibold text-green-800 mr-2">${post.author}</span>
+                            <span class="text-gray-400 text-xs">${date.toLocaleString('pt-BR')}</span>
+                        </div>
+                        <p class="text-gray-800">${post.content}</p>
                     </div>
-                    <p class="text-gray-800">${post.content}</p>
-                </div>
-            `;
+                `;
+            });
         });
-    });
     </script>
 </body>
 </html>
