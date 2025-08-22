@@ -17,23 +17,21 @@
         h1, h2, h3, h4, .logo {
             font-family: 'Playfair Display', serif;
         }
-        /* Container da viewport do quadro */
         #whiteboard-viewport {
             width: 100%;
             min-height: 600px;
             cursor: grab;
-            overflow: hidden; /* Essencial para o pan/zoom */
-            position: relative; /* Para posicionar os controles de zoom */
+            overflow: hidden;
+            position: relative;
         }
         #whiteboard-viewport:active {
             cursor: grabbing;
         }
-        /* A tela interna que se move e escala */
         #whiteboard-canvas {
             width: 100%;
             height: 100%;
             position: relative;
-            transform-origin: 0 0; /* Ponto de origem para a escala */
+            transform-origin: 0 0;
         }
         .resize-handle {
             position: absolute;
@@ -42,7 +40,7 @@
             width: 16px;
             height: 16px;
             cursor: se-resize;
-            z-index: 15; /* Para ficar acima do conteúdo da nota */
+            z-index: 15;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='rgba(107,114,128,1)'%3E%3Cpath d='M20 20H22V22H20V20ZM20 16H22V18H20V16ZM16 20H18V22H16V20Z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: bottom right;
@@ -77,12 +75,8 @@
                 </button>
             </form>
 
-            <!-- Estrutura da Viewport e Controles de Zoom -->
             <div id="whiteboard-viewport" class="bg-gray-200 border-dashed border-4 border-gray-400 rounded-lg shadow-inner">
-                <div id="whiteboard-canvas">
-                    <!-- As notas aparecerão aqui -->
-                </div>
-                <!-- Controles de Zoom -->
+                <div id="whiteboard-canvas"></div>
                 <div class="absolute bottom-4 right-4 bg-white rounded-lg shadow-lg flex flex-col z-20">
                     <button id="zoom-in-btn" class="p-2 text-gray-700 hover:bg-gray-200"><i class="ri-zoom-in-line"></i></button>
                     <button id="zoom-out-btn" class="p-2 text-gray-700 hover:bg-gray-200 border-t border-b border-gray-300"><i class="ri-zoom-out-line"></i></button>
@@ -95,69 +89,31 @@
              <h1 class="text-3xl font-bold text-green-900 mb-8 flex items-center">
                 <i class="ri-file-list-3-line mr-2"></i>Documentos Descobertos
             </h1>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Recibo de entrega -->
-                <div id="recibo" class="document-card bg-white rounded-lg shadow-lg p-6 border-l-4 border-yellow-400 flex flex-col">
-                    <img src="../img/Recibo Entrega.png" alt="Recibo de entrega" class="mb-4 rounded">
-                    <h2 class="text-xl font-bold mb-2 flex items-center"><i class="ri-file-text-line mr-2"></i>#1 - Recibo de entrega</h2>
-                    <p class="text-gray-700 mb-2"><strong>Data:</strong> 21/08/1970</p>
-                    <p class="text-gray-600 flex-grow">Um antigo recibo comprovando uma entrega feita à Rádio Aurora. O documento sugere movimentações incomuns na época, levantando suspeitas sobre o que foi entregue e quem estava envolvido.</p>
-                    <button class="add-to-board-btn mt-4 bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-800 transition">Adicionar ao Quadro</button>
-                </div>
 
-                <!-- Jornal 11/07 -->
-                <div id="jornal" class="document-card bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-400 flex flex-col">
-                    <img src="../img/Jornal.png" alt="Jornal 11/07" class="mb-4 rounded">
-                    <h2 class="text-xl font-bold mb-2 flex items-center"><i class="ri-newspaper-line mr-2"></i>#2 - Jornal 11/07</h2>
-                    <p class="text-gray-700 mb-2"><strong>Manchete:</strong> Morte de Silvio</p>
-                    <p class="text-gray-600 flex-grow">Edição do jornal local, datada de 11 de julho, trazendo em destaque a misteriosa morte de Silvio, um dos funcionários mais antigos da rádio. A reportagem levanta dúvidas sobre as circunstâncias do falecimento.</p>
-                    <button class="add-to-board-btn mt-4 bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-800 transition">Adicionar ao Quadro</button>
-                </div>
+            <!-- NOVO: Formulário de Upload de Documentos -->
+            <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-gray-500 mb-8">
+                <h2 class="text-xl font-bold mb-4">Adicionar Novo Documento</h2>
+                <form id="upload-doc-form" class="space-y-4">
+                    <div>
+                        <label for="doc-title-input" class="block text-sm font-medium text-gray-700">Título do Documento</label>
+                        <input type="text" id="doc-title-input" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-green-500 focus:border-green-500">
+                    </div>
+                    <div>
+                        <label for="doc-file-input" class="block text-sm font-medium text-gray-700">Ficheiro de Imagem (máx 2MB)</label>
+                        <input type="file" id="doc-file-input" required accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button type="submit" class="bg-green-700 text-white font-bold py-2 px-6 rounded-md hover:bg-green-800 transition">
+                            <i class="ri-upload-cloud-2-line mr-2"></i>Enviar
+                        </button>
+                        <div id="upload-status" class="text-sm text-gray-600"></div>
+                    </div>
+                </form>
+            </div>
 
-                <!-- Foto da inauguração -->
-                <div id="inauguracao" class="document-card bg-white rounded-lg shadow-lg p-6 border-l-4 border-green-400 flex flex-col">
-                    <img src="../img/Inauguracao Radio Aurora - frente.png" alt="Foto da inauguração" class="mb-4 rounded">
-                    <h2 class="text-xl font-bold mb-2 flex items-center"><i class="ri-image-line mr-2"></i>#3 - Foto da inauguração</h2>
-                    <p class="text-gray-700 mb-2"><strong>Registro:</strong> Inauguração da Rádio Aurora, 1948</p>
-                    <p class="text-gray-600 flex-grow">Fotografia em preto e branco mostrando autoridades, fundadores e convidados na cerimônia de abertura da rádio. Alguns rostos podem ser reconhecidos em outros documentos, sugerindo relações antigas e segredos enterrados.</p>
-                    <button class="add-to-board-btn mt-4 bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-800 transition">Adicionar ao Quadro</button>
-                </div>
-
-                <!-- Post-it de Eduardo -->
-                <div id="postit" class="document-card bg-white rounded-lg shadow-lg p-6 border-l-4 border-pink-400 flex flex-col">
-                    <img src="../img/Postit Diretor.png" alt="Post-it de Eduardo" class="mb-4 rounded">
-                    <h2 class="text-xl font-bold mb-2 flex items-center"><i class="ri-sticky-note-line mr-2"></i>#4 - Post-it de Eduardo</h2>
-                    <p class="text-gray-700 mb-2"><strong>Local:</strong> Sala do Diretor</p>
-                    <p class="text-gray-600 flex-grow">Pequeno bilhete adesivo com anotações apressadas feitas por Eduardo, ex-diretor da rádio. O conteúdo sugere preocupação com uma possível auditoria e indica a existência de uma chave escondida.</p>
-                    <button class="add-to-board-btn mt-4 bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-800 transition">Adicionar ao Quadro</button>
-                </div>
-
-                <!-- Planta da Rádio Aurora -->
-                <div id="planta" class="document-card bg-white rounded-lg shadow-lg p-6 border-l-4 border-purple-400 flex flex-col">
-                    <img src="../img/Planta Antiga.png" alt="Planta da Rádio Aurora" class="mb-4 rounded">
-                    <h2 class="text-xl font-bold mb-2 flex items-center"><i class="ri-building-4-line mr-2"></i>#5 - Planta da Rádio Aurora</h2>
-                    <p class="text-gray-700 mb-2"><strong>Descrição:</strong> Planta detalhada das instalações</p>
-                    <p class="text-gray-600 flex-grow">Desenho técnico detalhado com as divisões, acessos, salas e áreas restritas da Rádio Aurora. Essencial para planejar investigações e identificar possíveis pontos ocultos ou rotas de fuga.</p>
-                    <button class="add-to-board-btn mt-4 bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-800 transition">Adicionar ao Quadro</button>
-                </div>
-
-                <!-- Celular da Sonia -->
-                <div id="celular" class="document-card bg-white rounded-lg shadow-lg p-6 border-l-4 border-red-400 flex flex-col">
-                    <img src="../img/Celular da Sonia.png" alt="Celular da Sonia" class="mb-4 rounded">
-                    <h2 class="text-xl font-bold mb-2 flex items-center"><i class="ri-smartphone-line mr-2"></i>#6 - Celular da Sonia</h2>
-                    <p class="text-gray-700 mb-2"><strong>Localização:</strong> Estúdio C</p>
-                    <p class="text-gray-600 flex-grow">Telefone celular de Sonia, encontrado no Estúdio C. Contém diversas mensagens suspeitas, algumas apagadas, que podem revelar pistas importantes sobre o mistério em andamento.</p>
-                    <button class="add-to-board-btn mt-4 bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-800 transition">Adicionar ao Quadro</button>
-                </div>
-
-                <!-- Briefing da missão -->
-                <div id="briefing" class="document-card bg-white rounded-lg shadow-lg p-6 border-l-4 border-gray-400 flex flex-col">
-                    <img src="../img/Briefing da Missão.png" alt="Briefing da missão" class="mb-4 rounded">
-                    <h2 class="text-xl font-bold mb-2 flex items-center"><i class="ri-file-list-2-line mr-2"></i>#7 - Briefing da missão</h2>
-                    <p class="text-gray-700 mb-2"><strong>Conteúdo:</strong> Informações gerais da missão</p>
-                    <p class="text-gray-600 flex-grow">Documento entregue no início da investigação, contendo objetivos, contexto, nomes relevantes e detalhes sobre o que se espera dos personagens durante a missão em Santa Dália.</p>
-                    <button class="add-to-board-btn mt-4 bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-800 transition">Adicionar ao Quadro</button>
-                </div>
+            <!-- Este container será preenchido pelo JavaScript -->
+            <div id="document-grid-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Os cards dos documentos aparecerão aqui -->
             </div>
         </section>
     </main>
@@ -166,7 +122,6 @@
         <span class="text-gray-300">Dossiê criado por Joao Teixeira | Santa Dália RPG &copy; 2025</span>
     </footer>
 
-    <!-- Carrega o arquivo JavaScript externo -->
     <script src="./components/whiteboard.js" defer></script>
 </body>
 </html>
